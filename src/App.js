@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Map from './Map';
+import Footer from './Footer';
 import logo from './logo.svg';
 import './App.css';
 
@@ -52,14 +54,12 @@ class App extends Component {
             </form>
           </section>
           
-          <section className="map-container">
-            <div id="map" aria-label="map of museums" role="application"></div>
-          </section>
+          <Map/>
 
 
         </main>
 
-
+        <Footer/>
       </div>
     );
   }
