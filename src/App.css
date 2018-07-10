@@ -1,28 +1,133 @@
-.App {
+
+.app {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/* ICON FROM: https://www.flaticon.com/free-icon/banks_252032#term=museum&page=1&position=4 */
+.app-logo {
+  height: 60px;
+  padding-left: 10px;
 }
 
-.App-header {
+.app-header {
+  display: flex;
   background-color: #222;
-  height: 150px;
+  height: 80px;
   padding: 20px;
   color: white;
 }
 
-.App-title {
+.app-title {
+  font-size: 2em;
+  padding-left: 20px;
+}
+
+.search-bar {
+  position: fixed;
+  width: 100%;
+  top: 80;
+  left: 0;
+  z-index: 0;
+  display: flex;
+  padding-left: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 1.25em;
+  border: none;
+  outline: none;
+}
+
+
+#hamburger
+{
+  position: absolute;
+  right: 0;
+  padding: 20px 40px;
+  display: inline-block;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#hamburger input
+{
+  display: block;
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  top: 12px;
+  left:  35px;
+  
+  cursor: pointer;
+  
+  opacity: 0; 
+  z-index: 2; 
+  
+  -webkit-touch-callout: none;
+}
+
+
+#hamburger span
+{
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #ccc4c1;
+  border-radius: 3px;
+  
+  z-index: 1;
+}
+
+
+#menu
+{
+  position: absolute;
+  display: block;
+  width: 300px;
+  top: -20px;
+  left: -180px;
+  background: rgb(173, 167, 164, 0.9);
+
+
+}
+#list-title
+{
+  padding-top: 70px;
+  padding-bottom: -30px;
   font-size: 1.5em;
+  text-transform: uppercase;
+ 
+}
+.line {
+  max-width: 80%;
+  padding-bottom: 5px;
+
+}
+.path {
+  stroke-width: 5px;
+  stroke: #ccc4c1;
+}
+nav ul {
+  list-style: none;
+  margin-left: -40px;
+}
+nav li
+{
+  padding: 10px;
+  font-size: 1.25em;
+  color: #3d3d3b;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+#hamburger input:checked ~ #menu
+{
+  display: none;
 }
