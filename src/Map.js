@@ -73,7 +73,7 @@ populateInfoWindow (marker, infowindow) {
           infowindow.open(map, marker);
           })
             .catch(err => {
-                infowindow.setContent(`<div><span>There was an error loading this venue's info</span><p>Error: ${err}</p></div>`)
+                infowindow.setContent(`<div><span>There was an error loading Foursquare API</span><p>Error: ${err}</p></div>`)
                 infowindow.open(map, marker);
             })
           // Make sure the marker property is cleared if the infowindow is closed.
@@ -84,11 +84,18 @@ populateInfoWindow (marker, infowindow) {
       }
 
 // Created the HTML to be used on the info content if it exists on the response
-    buildInfoWindowContent (vDetails) {
+    buildInfoWindowContent (details) {
         let content = '<div class="info-window">'
-        content += vDetails.name ? `<h3>${vDetails.name}</h3>` : '';
-        content += vDetails.categories[0].name ? `<h4>${vDetails.categories[0].name}</h4>` : '';
-        content += '</p></ul></div>'
+        content += details.name ? `<h3>${details.name}</h3>` : '';
+      
+        content += details.bestPhoto.prefix && details.bestPhoto.suffix ? `<img src="${details.bestPhoto.prefix}150x90${details.bestPhoto.suffix}" alt="Photo of museum" class="info-window-pic">` : '';
+      content += '<p><ul>'
+        content += details.location.address ? `<span><li>${details.location.address}</li></span>` : '';
+        content += details.contact.formattedPhone ? `<li>Phone: ${details.contact.formattedPhone}</li>` : '';
+        content += details.rating && details.likes.summary ? `<li>Rating: <span>${details.rating}</span> with <span>${details.likes.summary}</span></li>` : '';
+ content += '</p></ul>'
+
+        content +='</div>'
         return content;
     };
 
