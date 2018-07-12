@@ -3,6 +3,8 @@ import Map from './Map';
 import Footer from './Footer';
 import logo from './logo.svg';
 import './App.css';
+import museums from './museums.json';
+
 
 class App extends Component {
   render() {
@@ -22,16 +24,19 @@ class App extends Component {
               
               <div id="menu">
                 <h2 id="list-title">best museums</h2>
-                <svg class="line" xmlns="http://www.w3.org/2000/svg" height="3px">
+                <svg className="line" xmlns="http://www.w3.org/2000/svg" height="3px">
                   <path class="path" d="M0 0 1200 0"/>
                 </svg>
-                <ul>
-                  <li>Show me more</li>
-                  <li>Show me more</li>
-                  <li>Show me more</li>
-                  <li>Show me more</li>
-                  <li>Show me more</li>
-
+                <ul
+                  aria-label = 'List of museums'>
+                  {museums.map( location =>
+                    <li 
+                      data-key={location.id} 
+                      key={location.id} 
+                      role="button">
+                      {location.name} 
+                    </li>
+                  )}
 
                 </ul>
               </div>
