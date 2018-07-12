@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import museums from './museums.json';
 import scriptLoader from 'react-async-script-loader';
+import * as FoursquareAPI from './FoursquareAPI';
 
 let markers = []
 let map = "";
@@ -52,6 +53,7 @@ initMap() {
       // Create an onClick event to open an infowindow at each marker.
       marker.addListener('click', () => {
         this.populateInfoWindow(marker, infoWindow);
+        // Set boune animation foe selected marker
         marker.setAnimation(window.google.maps.Animation.BOUNCE);
         setTimeout(function () {
           marker.setAnimation(null);
@@ -63,14 +65,32 @@ populateInfoWindow (marker, infowindow) {
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
-          infowindow.setContent('<div>' + marker.title + '</div>');
+          FoursquareAPI.getVenues(marker.id)
+            .then(venue => {
+                const vDetails = venue.response.venue
+                const infoContent = this.buildInfoWindowContent(vDetails);
+          infowindow.setContent(infoContent);
           infowindow.open(map, marker);
+          })
+            .catch(err => {
+                infowindow.setContent(`<div><span>There was an error loading this venue's info</span><p>Error: ${err}</p></div>`)
+                infowindow.open(map, marker);
+            })
           // Make sure the marker property is cleared if the infowindow is closed.
           infowindow.addListener('closeclick',function(){
             infowindow.setMarker = null;
           });
         }
       }
+
+// Created the HTML to be used on the info content if it exists on the response
+    buildInfoWindowContent (vDetails) {
+        let content = '<div class="info-window">'
+        content += vDetails.name ? `<h3>${vDetails.name}</h3>` : '';
+        content += vDetails.categories[0].name ? `<h4>${vDetails.categories[0].name}</h4>` : '';
+        content += '</p></ul></div>'
+        return content;
+    };
 
     render(){
         return(
