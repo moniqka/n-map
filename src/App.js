@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
 import Map from './Map';
+import LocationList from './LocationList'
 import Footer from './Footer';
 import logo from './logo.svg';
 import './App.css';
 import museums from './museums.json';
+import escapeRegExp from 'escape-string-regexp';
 
 
 class App extends Component {
+  state = {
+    museums: [],
+    query: '',
+    triggeredPlace: ''
+    
+  }
+  
+
+triggerAPlace = (value) => {
+  this.setState({triggeredPlace : value})
+}
+
+filteringLocations = (query) => {
+  this.setState({query: query})
+  }
+
   render() {
+    let filteredLocations
+    if(this.state.query){
+    const match = new RegExp(escapeRegExp(this.state.query),'i')
+     filteredLocations = museums.filter((location)=> match.test(location.name))
+  } else {
+    filteredLocations = this.state.museums
+  }
     return (
       <div className="app">
 
@@ -23,23 +48,13 @@ class App extends Component {
               <span></span>
               
               <div id="menu">
-                <h2 id="list-title">best museums</h2>
-                <svg className="line" xmlns="http://www.w3.org/2000/svg" height="3px">
-                  <path class="path" d="M0 0 1200 0"/>
-                </svg>
-                <ul
-                  aria-label = 'List of museums'>
-                  {museums.map( location =>
-                    <li 
-                      className="location"
-                      data-key={location.id} 
-                      key={location.id} 
-                      role="button">
-                      {location.name} 
-                    </li>
-                  )}
-
-                </ul>
+                <LocationList
+                  trigger={this.triggerAPlace}
+                  museums={this.state.museums}
+                  filteredLocations={filteredLocations}
+              query={this.state.query}
+              filteringLocations={this.filteringLocations}
+                />
               </div>
             </nav>
         
@@ -54,13 +69,17 @@ class App extends Component {
 
                   type='text' 
                   placeholder='Search for museum' 
-            
-                />
+                  value={this.props.query}
+                   onChange={(event)=> this.filteringLocations(event.target.value)}
+                      />
               </div>
             </form>
           </section>
           
-          <Map/>
+          <Map
+          locations={filteredLocations}
+            triggeredPlace={this.state.triggeredPlace}
+          />
 
 
         </main>

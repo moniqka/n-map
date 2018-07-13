@@ -11,7 +11,7 @@ class Map extends Component{
         super(props);
         this.state = {
       locations: [],
-      
+      infoWindows: [],
       map: "",
       markers: [],
     }
@@ -28,14 +28,20 @@ this.initMap = this.initMap.bind(this)
         }
 }
 
+ componentDidUpdate() {
+      this.initMap(this.props.locations);
+      if(this.props.triggeredPlace){
+        this.toggleMarker(this.state.markers[this.props.triggeredPlace]);
+      }
+      }
+
 initMap() {
   const map = new window.google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
                 center: {lat: 51.1079, lng: 17.0385}
             });
 
-  const infoWindow = new window.google.maps.InfoWindow();
-
+ let bounds = new window.google.maps.LatLngBounds();
       for (let museum of museums) {
       // Get the position from the location array.
       let position = museum.location;
@@ -52,18 +58,32 @@ initMap() {
       markers.push(marker);
       // Create an onClick event to open an infowindow at each marker.
       marker.addListener('click', () => {
-        this.populateInfoWindow(marker, infoWindow);
-        // Set boune animation foe selected marker
-        marker.setAnimation(window.google.maps.Animation.BOUNCE);
-        setTimeout(function () {
-          marker.setAnimation(null);
-        }, 800);
-    });
+        this.toggleMarker(marker);
+      });
+      bounds.extend(marker.position);
+      this.state.markers.push(marker);
   }
 }
+
+toggleMarker(marker) {
+  const infoWindow = new window.google.maps.InfoWindow();
+  this.state.infoWindows.forEach(info => { info.close() });
+  this.populateInfoWindow(marker, infoWindow);
+
+  // Set boune animation foe selected marker
+  this.toggleBounce(marker);
+}
+
+toggleBounce(marker) {
+  marker.setAnimation(window.google.maps.Animation.BOUNCE);
+  setTimeout(function () {
+    marker.setAnimation(null);
+  }, 800);
+}
+
 populateInfoWindow (marker, infowindow) {
         // Check to make sure the infowindow is not already opened on this marker.
-        if (infowindow.marker != marker) {
+        if (infowindow.marker !== marker) {
           infowindow.marker = marker;
           FoursquareAPI.getVenues(marker.id)
             .then(venue => {
@@ -78,9 +98,11 @@ populateInfoWindow (marker, infowindow) {
             })
           // Make sure the marker property is cleared if the infowindow is closed.
           infowindow.addListener('closeclick',function(){
-            infowindow.setMarker = null;
+            infowindow.close();
           });
+          infowindow.open(this.state.map, marker);
         }
+        this.state.infoWindows.push(infowindow);
       }
 
 // Created the HTML to be used on the info content if it exists on the response
