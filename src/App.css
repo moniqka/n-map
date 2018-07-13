@@ -1,3 +1,8 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 .app {
   text-align: center;
@@ -94,8 +99,12 @@
   width: 300px;
   top: -20px;
   left: -180px;
+
   background: rgb(173, 167, 164, 0.9);
   z-index: 2;
+  
+  overflow-y: scroll;
+  height: 60vh;
 
 
 }
@@ -117,6 +126,8 @@
   stroke: #ccc4c1;
 }
 nav ul {
+
+
   list-style: none;
   margin-left: -40px;
 }
@@ -133,7 +144,7 @@ nav li
 }
 
 #map {
-   height: 70vh;
+   height: calc(100vh - 246px);
   position: relative;
 
 }
@@ -171,4 +182,12 @@ nav li
 }
 .info-window span {
   font-weight: 800;
+}
+.location:hover,
+.location.focus,
+.location:active {
+  background-color: #ccc4c1;
+  color: #fff;
+  cursor: pointer;
+ 
 }

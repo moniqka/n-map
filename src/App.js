@@ -31,6 +31,7 @@ class App extends Component {
                   aria-label = 'List of museums'>
                   {museums.map( location =>
                     <li 
+                      className="location"
                       data-key={location.id} 
                       key={location.id} 
                       role="button">
