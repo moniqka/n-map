@@ -7,31 +7,33 @@ import './App.css';
 import museums from './museums.json';
 import escapeRegExp from 'escape-string-regexp';
 
-
 class App extends Component {
   state = {
-    museums: [],
     query: '',
-    triggeredPlace: ''
-    
+    selectedMuseum: ''  
+  }  
+
+  filterLocations = (value) => {
+    this.setState({query: value})
   }
-  
 
-triggerAPlace = (value) => {
-  this.setState({triggeredPlace : value})
-}
-
-filteringLocations = (query) => {
-  this.setState({query: query})
+  selectMuseum = (value) => {
+    this.setState({selectedMuseum: value});
+  }
+ 
+  updateState = (query) => {
+    this.setState({selectedMuseum: ''});
   }
 
   render() {
     let filteredLocations
     if(this.state.query){
-    const match = new RegExp(escapeRegExp(this.state.query),'i')
-     filteredLocations = museums.filter((location)=> match.test(location.name))
+
+      //this.state.selectedMuseum= '';
+      const match = new RegExp(escapeRegExp(this.state.query),'i')
+      filteredLocations = museums.filter((location)=> match.test(location.name))
   } else {
-    filteredLocations = this.state.museums
+      filteredLocations = museums
   }
     return (
       <div className="app">
@@ -39,25 +41,22 @@ filteringLocations = (query) => {
         <header className="app-header">
           <img src={logo} className="app-logo" alt="logo" />
           <h1 className="app-title">Wrocław Museums</h1>
-
-            <nav id="hamburger">
-              <input type="checkbox" />
-              
-              <span></span>
-              <span></span>
-              <span></span>
-              
-              <div id="menu">
-                <LocationList
-                  trigger={this.triggerAPlace}
-                  museums={this.state.museums}
-                  filteredLocations={filteredLocations}
-              query={this.state.query}
-              filteringLocations={this.filteringLocations}
-                />
-              </div>
-            </nav>
-        
+          <nav id="hamburger">
+            <input type="checkbox" />
+            
+            <span></span>
+            <span></span>
+            <span></span>
+            
+            <div id="menu">
+              <LocationList
+                selectMuseum={this.selectMuseum}
+       
+                filteredLocations={filteredLocations}
+                query={this.state.query}
+              />
+            </div>
+          </nav>
         </header>
 
         <main id="maincontent">
@@ -66,22 +65,19 @@ filteringLocations = (query) => {
             <form>
               <div className="search-input">
                 <input 
-
                   type='text' 
                   placeholder='Search for museum' 
                   value={this.props.query}
-                   onChange={(event)=> this.filteringLocations(event.target.value)}
-                      />
+                  onChange={(event)=> {this.filterLocations(event.target.value); this.updateState(event.target.value);}}
+                />
               </div>
             </form>
           </section>
           
           <Map
-          locations={filteredLocations}
-            triggeredPlace={this.state.triggeredPlace}
+            filteredLocations={filteredLocations}
+            selectedMuseum={this.state.selectedMuseum}
           />
-
-
         </main>
 
         <Footer/>
