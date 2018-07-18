@@ -12,29 +12,31 @@ class App extends Component {
     query: '',
     selectedMuseum: ''  
   }  
-
+  // Set state to typed value in search input
   filterLocations = (value) => {
     this.setState({query: value})
   }
 
+  // Set state to location selected on the list
   selectMuseum = (value) => {
     this.setState({selectedMuseum: value});
   }
- 
+
+  // Clears selected location on saearch input change
   updateState = (query) => {
     this.setState({selectedMuseum: ''});
   }
 
   render() {
     let filteredLocations
-    if(this.state.query){
-
-      //this.state.selectedMuseum= '';
+    if (this.state.query) {
+      // Filter searched locations
       const match = new RegExp(escapeRegExp(this.state.query),'i')
       filteredLocations = museums.filter((location)=> match.test(location.name))
   } else {
       filteredLocations = museums
   }
+
     return (
       <div className="app">
 
@@ -50,8 +52,7 @@ class App extends Component {
             
             <div id="menu">
               <LocationList
-                selectMuseum={this.selectMuseum}
-       
+                selectMuseum={this.selectMuseum}  
                 filteredLocations={filteredLocations}
                 query={this.state.query}
               />
@@ -81,6 +82,7 @@ class App extends Component {
         </main>
 
         <Footer/>
+
       </div>
     );
   }
