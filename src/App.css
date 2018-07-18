@@ -3,17 +3,14 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .app {
   text-align: center;
 }
-
 /* ICON FROM: https://www.flaticon.com/free-icon/banks_252032#term=museum&page=1&position=4 */
 .app-logo {
   height: 60px;
   padding-left: 10px;
 }
-
 .app-header {
   display: flex;
   background-color: #222;
@@ -21,79 +18,54 @@ body {
   padding: 20px;
   color: white;
 }
-
 .app-title {
   font-size: 2em;
   padding-left: 20px;
 }
-
 .search-bar {
   position: relative;
   width: 100%;
-
   z-index: 1;
   display: flex;
-
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
 }
-
 .search-bar input {
-  width: 100%;
+  width: 100vw;
   padding: 15px 30px;
   font-size: 1.25em;
   border: none;
   outline: none;
 }
-
-
-#hamburger
-{
+#hamburger {
   position: absolute;
   right: 0;
   padding: 20px 40px;
   display: inline-block;
   
   z-index: 3;
-  
-  -webkit-user-select: none;
-  user-select: none;
 }
-
-#hamburger input
-{
+#hamburger input {
   display: block;
   width: 40px;
   height: 30px;
   position: absolute;
   top: 12px;
   left:  35px;
-  
   cursor: pointer;
-  
   opacity: 0; 
   z-index: 4; 
-  
-  -webkit-touch-callout: none;
 }
-
-
-#hamburger span
-{
+#hamburger span {
   display: block;
   width: 40px;
   height: 5px;
   margin-bottom: 5px;
   position: relative;
-  
   background: #ccc4c1;
   border-radius: 3px;
-  
   z-index: 3;
 }
-
-
-#menu
-{
+#menu {
   position: absolute;
   display: block;
   width: 300px;
@@ -105,29 +77,22 @@ body {
   
   overflow-y: scroll;
   height: 60vh;
-
-
 }
-#list-title
-{
+#list-title {
   padding-top: 70px;
   padding-bottom: -30px;
   font-size: 1.5em;
   text-transform: uppercase;
- 
 }
 .line {
   max-width: 80%;
   padding-bottom: 5px;
-
 }
 .path {
   stroke-width: 5px;
   stroke: #ccc4c1;
 }
 nav ul {
-
-
   list-style: none;
   margin-left: -40px;
 }
@@ -137,18 +102,14 @@ nav li
   font-size: 1.25em;
   color: #3d3d3b;
 }
-
 #hamburger input:checked ~ #menu
 {
   display: none;
 }
-
 #map {
    height: calc(100vh - 246px);
   position: relative;
-
 }
-
 .attribution {
   position: relative;
   width: 100%;
@@ -160,7 +121,6 @@ nav li
   text-align: right;
   font-size: 0.75em;
 }
-
 .attribution p {
   margin: 0;
   padding: 5px 20px 0 0;
@@ -170,11 +130,9 @@ nav li
   color: #ccc4c1;
   font-weight: 800;
 }
-
 .info-window {
   padding: 5px;
 }
-
 .info-window ul {
   padding-left: 5px;
   text-align: left;
@@ -189,5 +147,33 @@ nav li
   background-color: #ccc4c1;
   color: #fff;
   cursor: pointer;
- 
+}
+
+@media only screen and (max-width: 420px) {
+  #menu {
+    display: none;
+  }
+  .app-title {
+    font-size: 1.3em;
+    padding-left: 20px;
+    padding-top: 40px;
+  }
+  .app-logo {
+    height: 40px;
+    padding-top: 35px;
+  }
+  #hamburger input:checked ~ #menu
+  {
+    display: block;
+    overflow-y: scroll;
+  }
+  .attribution {
+    font-size: 0.6em;
+  }
+}
+
+@media only screen and (max-width: 313px) {
+  .app-title {
+    font-size: 1.1em;
+  }
 }

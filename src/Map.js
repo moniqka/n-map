@@ -64,6 +64,7 @@ class Map extends Component {
       });
 
       bounds.extend(marker.position);
+      this.state.map.fitBounds(bounds);
       // Push the marker to our array of markers.
       this.state.markers.push(marker);
       
