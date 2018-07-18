@@ -113,7 +113,7 @@ class Map extends Component {
     this.state.infoWindows.push(infowindow);
   }
 
-  // Creates the content od info window
+  // Creates the content of info window
   createInfoWindowContent(details) {
     let content = '<div class="info-window">'
     content += details.name ? `<h3>${details.name}</h3>` : '';
