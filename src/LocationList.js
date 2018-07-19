@@ -11,13 +11,13 @@ class LocationList extends Component {
         </svg>
 
         <ul>
-          {this.props.filteredLocations.map((location, index ) =>
+          {this.props.filteredLocations.map((location, index) =>
             <li 
               className="location"
               data-key={location.id} 
-              key={ index } 
+              key={index} 
               role="button"
-              onClick={(event)=> this.props.selectMuseum(event.target.textContent.trim())}>
+              onClick={(event)=> this.props.selectMuseum(event.target.textContent)}>
               {location.name} 
             </li>
           )}

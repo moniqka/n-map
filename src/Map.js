@@ -63,8 +63,8 @@ class Map extends Component {
         this.toggleMarker(marker, infowindow, data);
       });
 
-      bounds.extend(marker.position);
       this.state.map.fitBounds(bounds);
+      bounds.extend(marker.position);
       // Push the marker to our array of markers.
       this.state.markers.push(marker);
       
@@ -77,6 +77,7 @@ class Map extends Component {
 
   // This function handles the actions to set on marker
   toggleMarker(marker, infowindow, data) {
+    this.state.map.setCenter(marker.getPosition());
     this.populateInfoWindow(marker, infowindow, data);
     this.setBounce(marker);
   }
@@ -94,7 +95,8 @@ class Map extends Component {
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker !== marker) {
       infowindow.marker = marker;
-      // Fetches the data from Foursquare 
+      // Fetches the data from Foursquare
+      // https://developer.foursquare.com/ Udacity & Slack forums
       FoursquareAPI.getVenues(marker.id)
         .then(venue => {
           const details = venue.response.venue
@@ -115,6 +117,7 @@ class Map extends Component {
   }
 
   // Creates the content of info window
+  // from Option 1: Embedding HTML in the Javascript in https://mattfrear.com/2010/03/01/generating-and-injecting-html/
   createInfoWindowContent(details) {
     let content = '<div class="info-window">'
     content += details.name ? `<h3>${details.name}</h3>` : '';
