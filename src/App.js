@@ -41,10 +41,10 @@ class App extends Component {
       <div className="app">
 
         <header className="app-header">
-          <img src={logo} className="app-logo" alt="logo" />
-          <h1 className="app-title">Wrocław Museums</h1>
+          <img src={logo} className="app-logo" alt="museum icon - logo" tabIndex="0"/>
+          <h1 className="app-title" tabIndex="0">Wrocław Museums</h1>
           <nav id="hamburger">
-            <input type="checkbox" />
+            <input type="checkbox" role="button" aria-label="Hamburger menu"/>
             
             <span></span>
             <span></span>
@@ -62,7 +62,7 @@ class App extends Component {
 
         <main id="maincontent">
 
-          <section className="search-bar" aria-label="search for museums">
+          <section className="search-bar" tabIndex="0" aria-label="search for museums">
             <form>
               <div className="search-input">
                 <input 

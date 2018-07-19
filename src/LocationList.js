@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 
 class LocationList extends Component {
 
+  handleKeyPress(event) {
+    if (event.charCode === 13) {
+      this.props.selectMuseum(event.target.textContent)
+    }
+  }
+
   render() {
     return (
       <div>
@@ -10,14 +16,15 @@ class LocationList extends Component {
           <path className="path" d="M0 0 1200 0"/>
         </svg>
 
-        <ul>
+        <ul tabIndex = "0" aria-label = "List of best museums in Wroclaw">
           {this.props.filteredLocations.map((location, index) =>
-            <li 
+            <li tabIndex = "0" aria-label = {`${location.name} , Enter for details`}
               className="location"
               data-key={location.id} 
               key={index} 
               role="button"
-              onClick={(event)=> this.props.selectMuseum(event.target.textContent)}>
+              onClick={(event)=> this.props.selectMuseum(event.target.textContent)}
+              onKeyPress = {(event) => this.handleKeyPress(event)}>
               {location.name} 
             </li>
           )}

@@ -119,9 +119,9 @@ class Map extends Component {
   // Creates the content of info window
   // from Option 1: Embedding HTML in the Javascript in https://mattfrear.com/2010/03/01/generating-and-injecting-html/
   createInfoWindowContent(details) {
-    let content = '<div class="info-window">'
+    let content = '<div class="info-window" tabIndex="0" aria-hidden="false">'
     content += details.name ? `<h3>${details.name}</h3>` : '';
-    content += details.bestPhoto.prefix && details.bestPhoto.suffix ? `<img src="${details.bestPhoto.prefix}150x90${details.bestPhoto.suffix}" alt="Photo of museum" class="info-window-pic">` : '';
+    content += details.bestPhoto.prefix && details.bestPhoto.suffix ? `<img src="${details.bestPhoto.prefix}150x90${details.bestPhoto.suffix}" alt="Photo of museum." class="info-window-pic">` : '';
     content += '<p><ul>'
     content += details.location.address ? `<span><li>${details.location.address}</li></span>` : '';
     content += details.contact.formattedPhone ? `<li>Phone: ${details.contact.formattedPhone}</li>` : '';
@@ -169,10 +169,9 @@ class Map extends Component {
   }
 
   render() {
-    
     return(
       <div>
-        <div id="map"></div>
+        <div id="map" role = "application" tabIndex = "-1"></div>
       </div>
     )
   }
