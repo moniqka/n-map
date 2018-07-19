@@ -1,33 +1,32 @@
 [
-	{
-		"name":"Panorama of the Battle of Racławice", 
-		"location":{"lat": 51.110129, "lng": 17.044343}, 
-		"id": "4c8b841f6418a1431ab5e9ce"
-	},
-	{
-		"name":"National Museum", 
-		"location":{"lat": 51.11088, "lng": 17.047628}, 
-		"id": "4c0e698fd64c0f47c71b285d"
-	},
-	{
-		"name":"Museum of Architecture", 
-		"location":{"lat": 51.10953, "lng": 17.041958},
-		"id": "4c14eba2a1010f47a5194d18"
-	},
-	{
-		"name":"Wroclaw Contemporary Museum", 
-		"location":{"lat": 51.113224, "lng": 17.005305},
-		"id": "4e61de73b3ad629a3a6112a1"
-	},
-	{
-		"name":"Four Domes Pavilion", 
-		"location":{"lat": 51.108099, "lng": 17.075851},
-		"id": "50eead0716484667f113d635"
-	},
-	{
-		"name":"Hydropolis", 
-		"location":{"lat":  51.10422, "lng": 17.0566},
-		"id": "56121c89498ea85872abd333"
-	}
-
+  {
+    "name":"Panorama of the Battle of Racławice", 
+    "location":{"lat": 51.110129, "lng": 17.044343}, 
+    "id": "4c8b841f6418a1431ab5e9ce"
+  },
+  {
+    "name":"National Museum", 
+    "location":{"lat": 51.11088, "lng": 17.047628}, 
+    "id": "4c0e698fd64c0f47c71b285d"
+  },
+  {
+    "name":"Museum of Architecture", 
+    "location":{"lat": 51.10953, "lng": 17.041958},
+    "id": "4c14eba2a1010f47a5194d18"
+  },
+  {
+    "name":"Wroclaw Contemporary Museum", 
+    "location":{"lat": 51.113224, "lng": 17.005305},
+    "id": "4e61de73b3ad629a3a6112a1"
+  },
+  {
+    "name":"Four Domes Pavilion", 
+    "location":{"lat": 51.108099, "lng": 17.075851},
+    "id": "50eead0716484667f113d635"
+  },
+  {
+    "name":"Hydropolis", 
+    "location":{"lat":  51.10422, "lng": 17.0566},
+    "id": "56121c89498ea85872abd333"
+  }
 ]
