@@ -121,7 +121,7 @@ class Map extends Component {
   createInfoWindowContent(details) {
     let content = '<div class="info-window" tabIndex="0" aria-hidden="false">'
     content += details.name ? `<h3>${details.name}</h3>` : '';
-    content += details.bestPhoto.prefix && details.bestPhoto.suffix ? `<img src="${details.bestPhoto.prefix}150x90${details.bestPhoto.suffix}" alt="Photo of museum." class="info-window-pic">` : '';
+    content += details.bestPhoto.prefix && details.bestPhoto.suffix ? `<img src="${details.bestPhoto.prefix}150x90${details.bestPhoto.suffix}" alt="Photo of ${details.name}" class="info-window-pic">` : '';
     content += '<p><ul>'
     content += details.location.address ? `<span><li>${details.location.address}</li></span>` : '';
     content += details.contact.formattedPhone ? `<li>Phone: ${details.contact.formattedPhone}</li>` : '';
