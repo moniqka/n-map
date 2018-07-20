@@ -23,9 +23,18 @@ class Map extends Component {
     }
   }
 
+  componentDidMount(){
+    window.gm_authFailure = this.gm_authFailure;
+  }
+
   // Updates markers based on the search results
   componentDidUpdate() {
     this.populateMarkers(this.props.filteredLocations);
+  }
+
+  // This function shows error message - it will be called automatically in the componentDidMount()
+  gm_authFailure(){
+    window.alert("Google Maps authentication error.")
   }
 
   initMap() {
