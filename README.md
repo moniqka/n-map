@@ -22,6 +22,7 @@ The goal of this project was to develop a single page application (in React.js) 
 2. From inside the new directory, install dependencies with `npm install` (you will need Node.js and npm already installed on your machine).
 Project was bootstrapped with Create React App, so all dependencies will be automatically installed.
 3. Use command line `npm start` to run the application in you browser (the server will automatically run on port 3000).
+4. In order to cache and make the app available offline you need to run the production build. Use command line: `npm run serve`, `serve -s build` and then navigate to http://localhost:5000/.
 
 ### Important
 Most of the code used for developing this application was taken from Udacity lessons. Other resources used: Google Maps API documentation, Foursquare documentation, Stack Overflow as well as analized other students problems posted on Slack and Udacity forums. 
